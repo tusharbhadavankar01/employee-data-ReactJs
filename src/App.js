@@ -4,6 +4,7 @@ import Home from './Components/Home';
 import AddEditEmployee from './Components/AddEditEmployee';
 import EmployeeDetails from './Components/EmployeeDetails';
 import DeleteConfirmation from './Components/DeleteConfirmation';
+import './App.css';
 
 function App() {
   return (

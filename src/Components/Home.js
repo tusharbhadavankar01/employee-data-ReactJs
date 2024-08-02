@@ -41,10 +41,11 @@ const Home = () => {
   const paginatedEmployees = filteredEmployees.slice((currentPage - 1) * ITEMS_PER_PAGE, currentPage * ITEMS_PER_PAGE);
 
   return (
-    <div>
+    <div className="container">
       <h1>Employee List</h1>
-      <div>
-        <label>Country:
+      <div className="search-bar">
+        <label>
+          Country:
           <select onChange={e => setFilterCountry(e.target.value)} value={filterCountry}>
             <option value="">All Countries</option>
             {countries.map(country => (
@@ -54,7 +55,8 @@ const Home = () => {
             ))}
           </select>
         </label>
-        <label>State:
+        <label>
+          State:
           <input 
             type="text" 
             value={filterState} 
@@ -62,6 +64,9 @@ const Home = () => {
             placeholder="Filter by state"
           />
         </label>
+        <Link to="/add">
+          <button>Add New Employee</button>
+        </Link>
       </div>
       <table>
         <thead>
@@ -95,16 +100,14 @@ const Home = () => {
           ))}
         </tbody>
       </table>
-      <div>
-        {Array.from({ length: Math.ceil(filteredEmployees.length / ITEMS_PER_PAGE) }, (_, i) => (
-          <button 
-            key={i} 
-            onClick={() => setCurrentPage(i + 1)} 
-            disabled={currentPage === i + 1}
-          >
-            {i + 1}
-          </button>
-        ))}
+      <div className="pagination">
+        <button onClick={() => setCurrentPage(currentPage - 1)} disabled={currentPage === 1}>
+          Previous
+        </button>
+        <span>Page {currentPage}</span>
+        <button onClick={() => setCurrentPage(currentPage + 1)} disabled={paginatedEmployees.length < ITEMS_PER_PAGE}>
+          Next
+        </button>
       </div>
     </div>
   );
