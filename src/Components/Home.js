@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import './styles.css';
 const ITEMS_PER_PAGE = 10;
 
 const Home = () => {
@@ -44,29 +45,35 @@ const Home = () => {
     <div className="container">
       <h1>Employee List</h1>
       <div className="search-bar">
-        <label>
-          Country:
-          <select onChange={e => setFilterCountry(e.target.value)} value={filterCountry}>
-            <option value="">All Countries</option>
-            {countries.map(country => (
-              <option key={country.id} value={country.name}>
-                {country.name}
-              </option>
-            ))}
-          </select>
-        </label>
-        <label>
-          State:
-          <input 
-            type="text" 
-            value={filterState} 
-            onChange={e => setFilterState(e.target.value)} 
-            placeholder="Filter by state"
-          />
-        </label>
-        <Link to="/add">
-          <button>Add New Employee</button>
-        </Link>
+        <div className="filter-group">
+          <label>
+            Country:
+            <select onChange={e => setFilterCountry(e.target.value)} value={filterCountry}>
+              <option value="">All Countries</option>
+              {countries.map(country => (
+                <option key={country.id} value={country.name}>
+                  {country.name}
+                </option>
+              ))}
+            </select>
+          </label>
+        </div>
+        <div className="filter-group">
+          <label>
+            State:
+            <input 
+              type="text" 
+              value={filterState} 
+              onChange={e => setFilterState(e.target.value)} 
+              placeholder="Filter by state"
+            />
+          </label>
+        </div>
+        <div className="filter-group">
+          <Link to="/add">
+            <button className="add-new-employee">Add New Employee</button>
+          </Link>
+        </div>
       </div>
       <table>
         <thead>
@@ -92,9 +99,9 @@ const Home = () => {
               <td>{emp.state}</td>
               <td>{emp.district}</td>
               <td>
-                <Link to={`/details/${emp.id}`}>Details</Link>
-                <Link to={`/edit/${emp.id}`}>Edit</Link>
-                <Link to={`/delete/${emp.id}`}>Delete</Link>
+                <Link to={`/details/${emp.id}`} className="details-button">Details</Link>
+                <Link to={`/edit/${emp.id}`} className="edit-button">Edit</Link>
+                <Link to={`/delete/${emp.id}`} className="delete-button">Delete</Link>
               </td>
             </tr>
           ))}
