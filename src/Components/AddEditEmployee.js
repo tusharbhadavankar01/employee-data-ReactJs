@@ -134,5 +134,4 @@ const AddEditEmployee = () => {
     </div>
   );
 };
-
 export default AddEditEmployee;
